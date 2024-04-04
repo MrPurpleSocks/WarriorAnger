@@ -1,4 +1,8 @@
 import requests
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 def all(eventKey, token):
     matchKeysUrl = "https://www.thebluealliance.com/api/v3/event/" + eventKey + "/matches/keys"
@@ -14,3 +18,5 @@ def all(eventKey, token):
         keys.remove(firstTen[i])
     keys = firstTen + keys
     return keys
+
+print(all("2024casj", os.getenv("TBA_TOKEN")))

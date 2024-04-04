@@ -65,7 +65,6 @@ try:
         cl.set_profile_parameter("Output", "FilenameFormatting", i)
         print("Match: ", i)
         print(" ")
-        time.sleep(120)
         print("Waiting for field to clear")
         if matchStatus.waitForClear():
             print("Waiting for match to start")
@@ -77,12 +76,12 @@ try:
 
         while True:
             cur_time = time.perf_counter()
-            if round(cur_time-start) == 155 and not MatchDisplayed:
+            if round(cur_time-start) == 165 and not MatchDisplayed:
                 print("Match End!")
                 cl.stop_record()
                 MatchDisplayed = True
                 print("Delay to catch errors")
-                time.sleep(30)
+                time.sleep(180)
                 print(" ")
                 print(" ")
                 break

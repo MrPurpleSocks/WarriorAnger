@@ -131,7 +131,7 @@ def waitForClear():
 		h, w = plain_frame.shape[:2]
 		mask = numpy.zeros_like(plain_frame)
 		mask[:, :] = [255, 255, 255]
-		mask = cv2.rectangle(mask, (0, h-250), (w, h), (0, 0, 0), -1)  # Bottom
+		mask = cv2.rectangle(mask, (0, h-200), (w, h), (0, 0, 0), -1)  # Bottom
 		mask = cv2.rectangle(mask, (0,0), (w, 130), (0,0,0), -1)  # Top
 		mask = cv2.rectangle(mask, (0, 120), (105, h), (0,0,0), -1)  # Left
 		mask = cv2.rectangle(mask, (w-0, 120), (w-135, 260), (0, 0, 0), -1)  # Right
