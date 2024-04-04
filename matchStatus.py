@@ -21,21 +21,22 @@ def waitForStart():
 	df = pandas.DataFrame(columns = ["Start", "End"])
 
 	# Capturing video
-	video = cv2.VideoCapture(2)
+	video = cv2.VideoCapture(1)
 
 	# Infinite while loop to treat stack of image as video
 	while True:
 		# Reading frame(image) from video
+
 		check, plain_frame = video.read()
 
 		h, w = plain_frame.shape[:2]
 		mask = numpy.zeros_like(plain_frame)
 		mask[:, :] = [255, 255, 255]
-		mask = cv2.rectangle(mask, (0, h-260), (w, h), (0, 0, 0), -1)  # Bottom
-		mask = cv2.rectangle(mask, (0,0), (w, 120), (0,0,0), -1)  # Top
-		mask = cv2.rectangle(mask, (0, 120), (105, h-260), (0,0,0), -1)  # Left
-		mask = cv2.rectangle(mask, (w-0, 120), (w-135, 260), (0, 0, 0), -1)  # Right
-		mask = cv2.rectangle(mask, ((w//2)-100, 0), ((w//2)+90, h), (0, 0, 0), -1) # Middle
+		mask = cv2.rectangle(mask, (0, h-250), (w, h), (0, 0, 0), -1)  # Bottom
+		mask = cv2.rectangle(mask, (0,0), (w, 140), (0,0,0), -1)  # Top
+		mask = cv2.rectangle(mask, (0, 50), (75, h-200), (0,0,0), -1)  # Left
+		mask = cv2.rectangle(mask, (w-0, 80), (w-100, 260), (0, 0, 0), -1)  # Right
+		mask = cv2.rectangle(mask, ((w//2)-150, 0), ((w//2)+120, h), (0, 0, 0), -1)  # Middle
 		frame = cv2.bitwise_and(plain_frame, mask)
 
 
@@ -120,7 +121,7 @@ def waitForClear():
 	df = pandas.DataFrame(columns = ["Start", "End"])
 
 	# Capturing video
-	video = cv2.VideoCapture(2)
+	video = cv2.VideoCapture(1)
 
 	# Infinite while loop to treat stack of image as video
 	count = 0
@@ -131,10 +132,10 @@ def waitForClear():
 		h, w = plain_frame.shape[:2]
 		mask = numpy.zeros_like(plain_frame)
 		mask[:, :] = [255, 255, 255]
-		mask = cv2.rectangle(mask, (0, h-200), (w, h), (0, 0, 0), -1)  # Bottom
-		mask = cv2.rectangle(mask, (0,0), (w, 130), (0,0,0), -1)  # Top
-		mask = cv2.rectangle(mask, (0, 120), (105, h), (0,0,0), -1)  # Left
-		mask = cv2.rectangle(mask, (w-0, 120), (w-135, 260), (0, 0, 0), -1)  # Right
+		mask = cv2.rectangle(mask, (0, h-210), (w, h), (0, 0, 0), -1)  # Bottom
+		mask = cv2.rectangle(mask, (0,0), (w, 150), (0,0,0), -1)  # Top
+		mask = cv2.rectangle(mask, (0, 0), (105, h), (0,0,0), -1)  # Left
+		mask = cv2.rectangle(mask, (w-0, 0), (w-135, 280), (0, 0, 0), -1)  # Right
 		#mask = cv2.rectangle(mask, ((w//2)-100, 0), ((w//2)+90, h), (0, 0, 0), -1)
 		frame = cv2.bitwise_and(plain_frame, mask)
 
@@ -197,7 +198,7 @@ def waitForClear():
 				timerTriggered = False
 
 		cv2.imshow("Clear: Setup", frame)
-		cv2.imshow("Clear: Visualize", plain_frame)
+		# cv2.imshow("Clear: Visualize", plain_frame)
 
 		# Appending status of motion
 		motion_list.append(motion)

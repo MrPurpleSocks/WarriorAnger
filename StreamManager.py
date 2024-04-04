@@ -79,13 +79,3 @@ def updateMatch(client: obs.ReqClient, match, teamList):
     r1aResp = client.set_input_settings("Blue2Icon", {"file": teamIcon(teamList[4])}, True)
     b3Resp = client.set_input_settings("Blue3", {"text": teamList[5]}, True)
     r1aResp = client.set_input_settings("Blue3Icon", {"file": teamIcon(teamList[5])}, True)
-
-
-matches = ["2024test_qm1", "2024test_qm20", "2024test_qm3", "2024test_qm45", "2024test_qm5"]
-teams = ["254", "3255", "4859", "1678", "8", "3256"]
-
-countDown(cl, 301)
-
-# for i in range(len(matches)):
-#    updateMatch(cl, matches[i], teams)
-#    time.sleep(1)

@@ -15,5 +15,3 @@ def getStatus(url):
     frame.show()
 
     image_grabber.terminate()  # stop the transcoding
-
-getStatus("https://www.twitch.tv/mrpurplesocks")
