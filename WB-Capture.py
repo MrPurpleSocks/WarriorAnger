@@ -39,6 +39,7 @@ def signal_handler(sig, frame):
     print("Exiting gracefully")
     cl.set_current_program_scene("brb")
     time.sleep(1)
+    resp = cl.get_record_status()
     if resp.output_active:
         cl.stop_record()
         print("Stopped Recording")
@@ -82,7 +83,7 @@ for i in matches:
 
     while True:
         cur_time = time.perf_counter()
-        if round(cur_time-start) == 10 and not MatchDisplayed:  # Set to 165
+        if round(cur_time-start) == 165 and not MatchDisplayed:  # Set to 165
             print("Match End!")
             cl.stop_record()
             print("File saved as {}.mp4".format(file))
@@ -90,7 +91,7 @@ for i in matches:
             FileUpload.videoUpload(i, teams)
             MatchDisplayed = True
             print("Delay to catch errors")
-            time.sleep(120)
+            time.sleep(180)
             print("Advancing to next match")
             print(" ")
             print(" ")
