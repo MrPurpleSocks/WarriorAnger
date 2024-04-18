@@ -8,10 +8,8 @@ import shutil
 
 load_dotenv()
 
-cl = obs.ReqClient(host=os.getenv("OBSWS_HOST"), port=os.getenv("OBSWS_PORT"), password=os.getenv("OBSWS_PASSWORD"), timeout=3)
-
 def countDown(client: obs.ReqClient, t):
-    client.set_current_program_scene("PreMatch")
+    #client.set_current_program_scene("PreMatch")
     while t:
         if t == 300:
             print("5 Min Warning!")
@@ -61,7 +59,7 @@ def teamIcon(team):
 
 
 def updateMatch(client: obs.ReqClient, match, teamList):
-    match = match[11:]
+    match = match[10:]
     if len(match) == 1:
         match = "Qual-0" + match
     else:

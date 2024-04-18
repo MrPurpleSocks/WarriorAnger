@@ -21,7 +21,7 @@ def waitForStart():
 	df = pandas.DataFrame(columns = ["Start", "End"])
 
 	# Capturing video
-	video = cv2.VideoCapture(1)
+	video = cv2.VideoCapture(3)
 
 	# Infinite while loop to treat stack of image as video
 	while True:
@@ -121,7 +121,7 @@ def waitForClear():
 	df = pandas.DataFrame(columns = ["Start", "End"])
 
 	# Capturing video
-	video = cv2.VideoCapture(1)
+	video = cv2.VideoCapture(3)
 
 	# Infinite while loop to treat stack of image as video
 	count = 0
@@ -132,9 +132,9 @@ def waitForClear():
 		h, w = plain_frame.shape[:2]
 		mask = numpy.zeros_like(plain_frame)
 		mask[:, :] = [255, 255, 255]
-		mask = cv2.rectangle(mask, (0, h-210), (w, h), (0, 0, 0), -1)  # Bottom
+		mask = cv2.rectangle(mask, (0, h-250), (w, h), (0, 0, 0), -1)  # Bottom
 		mask = cv2.rectangle(mask, (0,0), (w, 150), (0,0,0), -1)  # Top
-		mask = cv2.rectangle(mask, (0, 0), (105, h), (0,0,0), -1)  # Left
+		mask = cv2.rectangle(mask, (0, 0), (55, h), (0,0,0), -1)  # Left
 		mask = cv2.rectangle(mask, (w-0, 0), (w-135, 280), (0, 0, 0), -1)  # Right
 		#mask = cv2.rectangle(mask, ((w//2)-100, 0), ((w//2)+90, h), (0, 0, 0), -1)
 		frame = cv2.bitwise_and(plain_frame, mask)
@@ -166,7 +166,7 @@ def waitForClear():
 
 		# If change in between static background and
 		# current frame is greater than 30 it will show white color(255)
-		thresh_frame = cv2.threshold(diff_frame, 3, 255, cv2.THRESH_BINARY)[1]
+		thresh_frame = cv2.threshold(diff_frame, 9, 255, cv2.THRESH_BINARY)[1]
 		thresh_frame = cv2.dilate(thresh_frame, None, iterations = 2)
 
 		# Finding contour of moving object
@@ -198,7 +198,7 @@ def waitForClear():
 				timerTriggered = False
 
 		cv2.imshow("Clear: Setup", frame)
-		# cv2.imshow("Clear: Visualize", plain_frame)
+		cv2.imshow("Clear: Visualize", plain_frame)
 
 		# Appending status of motion
 		motion_list.append(motion)
@@ -221,3 +221,5 @@ def waitForClear():
 				time.append(datetime.now())
 			break
 		count += 1
+
+waitForStart()
