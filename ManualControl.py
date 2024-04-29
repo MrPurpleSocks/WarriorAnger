@@ -58,4 +58,4 @@ for i in matches:
     cl.start_record()
     input("Press Return On Match End ")
     cl.stop_record()
-    FileUpload.videoUpload(i, teams)
+    #FileUpload.videoUpload(i, teams)
