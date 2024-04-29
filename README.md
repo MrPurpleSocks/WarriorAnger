@@ -58,3 +58,4 @@ The current version of WarriorAnger (3.0) doesn't support custom (non-3256) zipl
 - Prevent Start/Stop Double Click
 - Custom File Server Solution
 - Allow Custom zipline instances
+- Properly Format Code
