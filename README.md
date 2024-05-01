@@ -3,7 +3,7 @@
 </div>
 
 ## Notice
-The current version of WarriorAnger (3.0) doesn't support custom (non-3256) zipline instances
+The current version of WarriorAnger (3.0) doesn't support custom (non-3256) zipline instances, without some heavy customization.
 
 ## System Requirements
 - Windows 11 (10 may work)
