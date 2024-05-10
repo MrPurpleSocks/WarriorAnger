@@ -1,11 +1,15 @@
-# Allows for manual control of recording
+'''
+Allows for a manual control of the match recording system.
+Mainly for use with debugging or if the automatic system fails.
+'''
 
-from dotenv import load_dotenv
 import os
-import GetMatches
-import FileUpload
+
 import obsws_python as obs
-import StreamManager
+from dotenv import load_dotenv
+
+import get_matches
+import stream_manager
 
 # ascii escape codes
 LINE_UP = '\033[1A'
@@ -24,10 +28,11 @@ print("OBS Password: " + os.getenv("OBSWS_PASSWORD"))
 input("Press return to continue")
 print("Fetching Matches")
 
-matches = GetMatches.all(os.getenv("EVENT_KEY"), os.getenv("TBA_TOKEN"))
+matches = get_matches.get_all(os.getenv("EVENT_KEY"), os.getenv("TBA_TOKEN"))
 
 print("Connecting to OBS")
-cl = obs.ReqClient(host=os.getenv("OBSWS_HOST"), port=os.getenv("OBSWS_PORT"), password=os.getenv("OBSWS_PASSWORD"), timeout=3)
+cl = obs.ReqClient(host=os.getenv("OBSWS_HOST"), port=os.getenv("OBSWS_PORT"),
+                   password=os.getenv("OBSWS_PASSWORD"), timeout=3)
 
 path = os.getenv("ROOT_FOLDER") + os.getenv("EVENT_KEY")
 print("Checking for path")
@@ -42,18 +47,19 @@ else:
 
 for i in matches:
     print()
-    print("Match {} Queued".format(i))
+    print(f"Match {i} Queued")
     print("Fetching Match Data")
-    teams = GetMatches.getTeams(i)
+    teams = get_matches.get_teams(i)
     print("Posting to OBS Scene")
     cl.set_current_program_scene("Trans")
-    StreamManager.updateMatch(cl, i, teams)
+    stream_manager.updateMatch(cl, i, teams)
     cl.set_current_program_scene("Primary")
     print("Updating File Name")
-    file = "{}-{}_{}_{}-{}_{}_{}".format(i, teams[0], teams[1], teams[2], teams[3], teams[4], teams[5])
+    file = f"{i}-{teams[0]}_{teams[1]}_{teams[2]}-{teams[3]}_{teams[4]}_{teams[5]}"
     cl.set_profile_parameter("Output", "FilenameFormatting", file)
     print("Stream Is Ready!")
-    print("Red Alliance: {} {} {}, Blue Alliance: {} {} {}". format(teams[0], teams[1], teams[2], teams[3], teams[4], teams[5]))
+    print(f"Red Alliance: {teams[0]} {teams[1]} {teams[2]}")
+    print(f"Blue Alliance: {teams[3]} {teams[4]} {teams[5]}")
     input("Press Return On Match Start ")
     cl.start_record()
     input("Press Return On Match End ")
