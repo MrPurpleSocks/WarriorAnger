@@ -52,7 +52,7 @@ for i in matches:
     teams = get_matches.get_teams(i)
     print("Posting to OBS Scene")
     cl.set_current_program_scene("Trans")
-    stream_manager.updateMatch(cl, i, teams)
+    stream_manager.update_match(cl, i, teams)
     cl.set_current_program_scene("Primary")
     print("Updating File Name")
     file = f"{i}-{teams[0]}_{teams[1]}_{teams[2]}-{teams[3]}_{teams[4]}_{teams[5]}"
