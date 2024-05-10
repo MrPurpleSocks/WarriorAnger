@@ -32,7 +32,7 @@ The current version of WarriorAnger (3.0) doesn't support custom (non-3256) zipl
 - `python WB-Capture.py` - Run main script.
 
 
-# Release 3.0
+# Release 3.1
 
 ## Current Features
 - CLI User Interface
@@ -44,10 +44,7 @@ The current version of WarriorAnger (3.0) doesn't support custom (non-3256) zipl
 - Automatic Stream Graphics
 
 ## What's Changed
-- Manual Mode added
-- Automatic Mode Temporarily Disabled (Womp Womp)
-- File Upload Broken :(
-- Easy (ish) Setup
+- Fixed Linter issues (Mostly)
 
 ## Upcoming Features and Fixes
 - Fixing File Upload (Async file upload, File Chunking)
@@ -58,4 +55,4 @@ The current version of WarriorAnger (3.0) doesn't support custom (non-3256) zipl
 - Prevent Start/Stop Double Click
 - Custom File Server Solution
 - Allow Custom zipline instances
-- Properly Format Code
+- Finish Properly Formating Code
