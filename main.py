@@ -13,7 +13,7 @@ import obsws_python as obs
 from dotenv import load_dotenv
 
 import get_matches
-#import file_upload
+import file_upload
 import stream_manager
 
 if __name__ == "__main__":
@@ -96,31 +96,20 @@ if __name__ == "__main__":
         stream_manager.updateMatch(cl, i, teams)
         print("Stream Ready!")
         print("Waiting for field to clear")
-        #if match_status.waitForClear():
-        #    print("Waiting for match to start")
-        #    if match_status.waitForStart():
-        #        print("Match Started!")
-        #        start = time.perf_counter()
-        #        cl.toggle_record()
-        #        print("Started Recording")
 
-        #while True:
-        #    cur_time = time.perf_counter()
-        #    if round(cur_time-start) == 165 and not MATCH_DISPLAYED:  # Set to 165
-        #        print("Match End!")
-        #        cl.stop_record()
-        #        print(f"File saved as {file}.mp4")
-        #        time.sleep(5)
-        #        file_upload.videoUpload(i, teams)
-        #        MATCH_DISPLAYED = True
-        #        print("Delay to catch errors")
-        #        time.sleep(180)
-        #        print("Advancing to next match")
-        #        print(" ")
-        #        print(" ")
-        #        break
-
-        #reset
-        #MATCH_DISPLAYED = False
-    #except:
-    # error_handler()
+        while True:
+            cur_time = time.perf_counter()
+            if round(cur_time == 165) and not MATCH_DISPLAYED:
+                print("Match End!")
+                cl.stop_record()
+                print(f"File saved as {file}.mp4")
+                time.sleep(5)
+                file_upload.videoUpload(i, teams)
+                MATCH_DISPLAYED = True
+                print("Delay to catch errors")
+                time.sleep(180)
+                print("Advancing to next match")
+                print(" ")
+                print(" ")
+                break
+        MATCH_DISPLAYED = False

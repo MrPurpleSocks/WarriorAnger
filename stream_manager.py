@@ -52,13 +52,11 @@ def team_icon(team):
                 with open(file, 'wb') as icon:
                     icon.write(base64.decodebytes(base_64_icon))
                 return file
-            else:
-                print("Missing team icon, adding to folder")
-                with open(file, 'wb') as icon:
-                    icon.write(base64.decodebytes(base_64_icon))
-                return file
-        else:
+            print("Missing team icon, adding to folder")
+            with open(file, 'wb') as icon:
+                icon.write(base64.decodebytes(base_64_icon))
             return file
+        return file
     except IndexError:  # Add exception type IndexError
         if not os.path.exists(os.getenv("ICON_FOLDER") + "/FRC_ICONS/DEFAULT.png"):
             if not os.path.exists(os.getenv("ICON_FOLDER") + "/FRC_ICONS/"):
@@ -66,9 +64,8 @@ def team_icon(team):
                 os.mkdir(folder)
                 shutil.copy("C:/Users/wooll/Downloads/default_icon.png", folder + "DEFAULT.png")
                 return folder + "DEFAULT.png"
-            else:
-                shutil.copy("C:/Users/wooll/Downloads/default_icon.png", folder + "DEFAULT.png")
-                return folder + "DEFAULT.png"
+            shutil.copy("C:/Users/wooll/Downloads/default_icon.png", folder + "DEFAULT.png")
+            return folder + "DEFAULT.png"
 
 
 def update_match(client: obs.ReqClient, match, team_list):
@@ -94,4 +91,3 @@ def update_match(client: obs.ReqClient, match, team_list):
     client.set_input_settings("Blue2Icon", {"file": team_icon(team_list[4])}, True)
     client.set_input_settings("Blue3", {"text": team_list[5]}, True)
     client.set_input_settings("Blue3Icon", {"file": team_icon(team_list[5])}, True)
-    
