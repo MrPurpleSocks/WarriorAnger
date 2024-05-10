@@ -84,16 +84,16 @@ if __name__ == "__main__":
     signal.signal(signal.SIGINT, signal_handler)
 
     #try:
-    matches = get_matches.all(os.getenv("EVENT_KEY"), os.getenv("TBA_TOKEN"))
+    matches = get_matches.get_all(os.getenv("EVENT_KEY"), os.getenv("TBA_TOKEN"))
 
     for i in matches:
         print("Match: ", i)
         print(" ")
-        teams = get_matches.getTeams(i)
+        teams = get_matches.get_teams(i)
         fileMatch = i[10:]
         file = f"{fileMatch}-{teams[0]}_{teams[1]}_{teams[2]}-{teams[3]}_{teams[4]}_{teams[5]}"
         cl.set_profile_parameter("Output", "FilenameFormatting", file)
-        stream_manager.updateMatch(cl, i, teams)
+        stream_manager.update_match(cl, i, teams)
         print("Stream Ready!")
         print("Waiting for field to clear")
 
@@ -104,7 +104,7 @@ if __name__ == "__main__":
                 cl.stop_record()
                 print(f"File saved as {file}.mp4")
                 time.sleep(5)
-                file_upload.videoUpload(i, teams)
+                file_upload.video_upload(i, teams)
                 MATCH_DISPLAYED = True
                 print("Delay to catch errors")
                 time.sleep(180)
