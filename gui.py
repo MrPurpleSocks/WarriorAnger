@@ -1,9 +1,14 @@
+'''
+It creates the GUI i guess, idk
+Isn't working rn, its just testing stuff
+'''
+
 
 from tkinter import Tk, Menu, Frame, Label, Listbox, StringVar, SUNKEN, LEFT, W, X, BOTTOM
 
 # GUI: RUN; OBS: READY; Stream: READY; Nexus: RUN; Manual: READY; Status: READY
 
-status = "READY"
+SATUS = "READY"
 services_in_error = ["OBS", "Stream", "ZipLine", "Nexus", "Manual"]
 services_running = []
 services_ready = []
@@ -17,7 +22,7 @@ def init():
     '''
     Initializes the GUI
     '''
-    global is_init
+
     if not is_init:
         is_init = True
         set_status("OBS", "READY")
@@ -30,7 +35,7 @@ def start_event():
     '''
     Starts the event
     '''
-    global warnings, is_started
+
     if len(services_in_error) > 0:
         warnings += 1
         listbox.insert(warnings,"Warning: Not all services are ready")
@@ -48,7 +53,7 @@ def end_event():
     '''
     Ends the event
     '''
-    global warnings, is_started
+
     if not is_started:
         warnings += 1
         listbox.insert(warnings,"Warning: Event not started")
@@ -309,7 +314,7 @@ listbox.pack()
 
 mastervar = StringVar()
 THING = "OBS: ERROR; Stream: ERROR; ZipLine: ERROR; Nexus: ERROR; Manual: ERROR; Status: ERROR"
-mastervar.set(thing)
+mastervar.set(THING)
 sbar = Label(root, textvariable=mastervar, relief=SUNKEN, anchor="w", bg="red")
 sbar.pack(side=BOTTOM, fill=X)
 
