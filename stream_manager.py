@@ -13,13 +13,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def count_down(client: obs.ReqClient, t):
+def count_down(obs_client: obs.ReqClient, t):
     '''
     Starts a countdown timer in OBS
-    and switches to it
+    and switches to it. returns 1 if successful
     '''
 
-    #client.set_current_program_scene("PreMatch")
+    #obs_client.set_current_program_scene("PreMatch")
     while t:
         if t == 300:
             print("5 Min Warning!")
@@ -27,10 +27,12 @@ def count_down(client: obs.ReqClient, t):
             print("1 Min Warning")
         mins, secs = divmod(t, 60)
         timer = f'{mins}:{secs}'
-        client.set_input_settings("CountDown", {"text": timer}, True)
+        obs_client.set_input_settings("CountDown", {"text": timer}, True)
         time.sleep(1)
         t -= 1
-    client.set_current_program_scene("Primary")
+    obs_client.set_current_program_scene("Primary")
+
+    return 1
 
 def team_icon(team):
     '''
@@ -67,10 +69,12 @@ def team_icon(team):
             shutil.copy("C:/Users/wooll/Downloads/default_icon.png", folder + "DEFAULT.png")
             return folder + "DEFAULT.png"
 
+    return 1
 
-def update_match(client: obs.ReqClient, match, team_list):
+
+def update_match(obs_client: obs.ReqClient, match, team_list):
     '''
-    Updates OBS settings for a match
+    Updates OBS settings for a match, returns 1 if successful
     '''
 
     match = match[10:]
@@ -78,16 +82,17 @@ def update_match(client: obs.ReqClient, match, team_list):
         match = "Qual-0" + match
     else:
         match = "Qual-" + match
-    client.set_input_settings("MatchNum", {"text": match}, True)
-    client.set_input_settings("Red1", {"text": team_list[0]}, True)
-    client.set_input_settings("Red1Icon", {"file": team_icon(team_list[0])}, True)
-    client.set_input_settings("Red2", {"text": team_list[1]}, True)
-    client.set_input_settings("Red2Icon", {"file": team_icon(team_list[1])}, True)
-    client.set_input_settings("Red3", {"text": team_list[2]}, True)
-    client.set_input_settings("Red3Icon", {"file": team_icon(team_list[2])}, True)
-    client.set_input_settings("Blue1", {"text": team_list[3]}, True)
-    client.set_input_settings("Blue1Icon", {"file": team_icon(team_list[3])}, True)
-    client.set_input_settings("Blue2", {"text": team_list[4]}, True)
-    client.set_input_settings("Blue2Icon", {"file": team_icon(team_list[4])}, True)
-    client.set_input_settings("Blue3", {"text": team_list[5]}, True)
-    client.set_input_settings("Blue3Icon", {"file": team_icon(team_list[5])}, True)
+    obs_client.set_input_settings("MatchNum", {"text": match}, True)
+    obs_client.set_input_settings("Red1", {"text": team_list[0]}, True)
+    obs_client.set_input_settings("Red1Icon", {"file": team_icon(team_list[0])}, True)
+    obs_client.set_input_settings("Red2", {"text": team_list[1]}, True)
+    obs_client.set_input_settings("Red2Icon", {"file": team_icon(team_list[1])}, True)
+    obs_client.set_input_settings("Red3", {"text": team_list[2]}, True)
+    obs_client.set_input_settings("Red3Icon", {"file": team_icon(team_list[2])}, True)
+    obs_client.set_input_settings("Blue1", {"text": team_list[3]}, True)
+    obs_client.set_input_settings("Blue1Icon", {"file": team_icon(team_list[3])}, True)
+    obs_client.set_input_settings("Blue2", {"text": team_list[4]}, True)
+    obs_client.set_input_settings("Blue2Icon", {"file": team_icon(team_list[4])}, True)
+    obs_client.set_input_settings("Blue3", {"text": team_list[5]}, True)
+    obs_client.set_input_settings("Blue3Icon", {"file": team_icon(team_list[5])}, True)
+    return 1

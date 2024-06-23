@@ -43,7 +43,7 @@ if __name__ == "__main__":
         os.mkdir(path)
     else:
         response = input(path + " Exists, do you want to use it? ")
-        if response == "N" or response == "n":
+        if response in ("n", "N"):
             newFolder = input("Please enter a dir name")
             path = os.getenv("ROOT_FOLDER") + newFolder
             path = path.replace("/", "\\")

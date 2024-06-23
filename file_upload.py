@@ -19,9 +19,10 @@ def video_upload(match: str, teams):
     event = match[:7]
     file = f"C:\\Users\\wooll\\Downloads\\{event}\\"
     file += f"{match}-{teams[0]}_{teams[1]}_{teams[2]}-{teams[3]}_{teams[4]}_{teams[5]}.mp4"
-    multipart_form_data = {
-        'file': (file, open(file, 'rb'), 'video/mp4')
-    }
+    with open(file, 'rb') as f:
+        multipart_form_data = {
+        'file': (file, f, 'video/mp4')
+        }
     headers = {
         "Authorization": os.getenv("ZIPLINE_TOKEN"),
         "Embed": "true",
