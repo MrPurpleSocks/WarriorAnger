@@ -1,9 +1,14 @@
+'''
+It creates the GUI i guess, idk
+Isn't working rn, its just testing stuff
+'''
+
 
 from tkinter import Tk, Menu, Frame, Label, Listbox, StringVar, SUNKEN, LEFT, W, X, BOTTOM
 
 # GUI: RUN; OBS: READY; Stream: READY; Nexus: RUN; Manual: READY; Status: READY
 
-status = "READY"
+SATUS = "READY"
 services_in_error = ["OBS", "Stream", "ZipLine", "Nexus", "Manual"]
 services_running = []
 services_ready = []
@@ -17,7 +22,7 @@ def init():
     '''
     Initializes the GUI
     '''
-    global is_init
+
     if not is_init:
         is_init = True
         set_status("OBS", "READY")
@@ -30,7 +35,7 @@ def start_event():
     '''
     Starts the event
     '''
-    global warnings, is_started
+
     if len(services_in_error) > 0:
         warnings += 1
         listbox.insert(warnings,"Warning: Not all services are ready")
@@ -48,7 +53,7 @@ def end_event():
     '''
     Ends the event
     '''
-    global warnings, is_started
+
     if not is_started:
         warnings += 1
         listbox.insert(warnings,"Warning: Event not started")
@@ -91,7 +96,7 @@ def set_status(service: str, status: str):
                         services_ready.remove("OBS")
                     if "OBS" not in services_in_error:
                         services_in_error.append("OBS")
-                         
+
                 case _:
                     print("Invalid Status")
         case "Stream":
@@ -120,7 +125,7 @@ def set_status(service: str, status: str):
                         services_ready.remove("Stream")
                     if "Stream" not in services_in_error:
                         services_in_error.append("Stream")
-                         
+
                 case _:
                     print("Invalid Status")
         case "ZipLine":
@@ -149,7 +154,7 @@ def set_status(service: str, status: str):
                         services_ready.remove("ZipLine")
                     if "ZipLine" not in services_in_error:
                         services_in_error.append("ZipLine")
-                         
+
                 case _:
                     print("Invalid Status")
         case "Nexus":
@@ -178,7 +183,7 @@ def set_status(service: str, status: str):
                         services_ready.remove("Nexus")
                     if "Nexus" not in services_in_error:
                         services_in_error.append("Nexus")
-                         
+
                 case _:
                     print("Invalid Status")
         case "Manual":
@@ -207,7 +212,7 @@ def set_status(service: str, status: str):
                         services_ready.remove("Manual")
                     if "Manual" not in services_in_error:
                         services_in_error.append("Manual")
-                         
+
                 case _:
                     print("Invalid Status")
         case "Status":
@@ -238,29 +243,30 @@ def set_status(service: str, status: str):
         Stream = "RUN"
     elif "Stream" in services_ready:
         Stream = "READY"
-    
+
     if "ZipLine" in services_in_error:
         Zipline = "ERROR"
     elif "ZipLine" in services_running:
         Zipline = "RUN"
     elif "ZipLine" in services_ready:
         Zipline = "READY"
-    
+
     if "Nexus" in services_in_error:
         Nexus = "ERROR"
     elif "Nexus" in services_running:
         Nexus = "RUN"
     elif "Nexus" in services_ready:
         Nexus = "READY"
-    
+
     if "Manual" in services_in_error:
         Manual = "ERROR"
     elif "Manual" in services_running:
         Manual = "RUN"
     elif "Manual" in services_ready:
         Manual = "READY"
-
-    mastervar.set(f"OBS: {OBS}; Stream: {Stream}; ZipLine: {Zipline}; Nexus: {Nexus}; Manual: {Manual}; Status: {status}")
+    thing2 = f"OBS: {OBS}; Stream: {Stream}; ZipLine: {Zipline}; "
+    thing2 += f"Nexus: {Nexus}; Manual: {Manual}; Status: {status}"
+    mastervar.set(thing2)
 
 root = Tk()
 root.geometry("600x233")
@@ -307,7 +313,8 @@ warnings = 4
 listbox.pack()
 
 mastervar = StringVar()
-mastervar.set("OBS: ERROR; Stream: ERROR; ZipLine: ERROR; Nexus: ERROR; Manual: ERROR; Status: ERROR")
+THING = "OBS: ERROR; Stream: ERROR; ZipLine: ERROR; Nexus: ERROR; Manual: ERROR; Status: ERROR"
+mastervar.set(THING)
 sbar = Label(root, textvariable=mastervar, relief=SUNKEN, anchor="w", bg="red")
 sbar.pack(side=BOTTOM, fill=X)
 
