@@ -1,6 +1,5 @@
 
-from tkinter import *
-import time
+from tkinter import Tk, Menu, Frame, Label, Listbox, StringVar, SUNKEN, LEFT, W, X, BOTTOM
 
 # GUI: RUN; OBS: READY; Stream: READY; Nexus: RUN; Manual: READY; Status: READY
 
