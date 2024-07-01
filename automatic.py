@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 ws = create_connection("wss://api.mrpurplesocks.hackclub.app/anger/client")
-for i in range(2): # NOTE: Temporary, will be replaced with a while loop
+for i in range(2): # NOTE:Temporary, will be replaced with a while loop
     print("Waiting to recieve")
     result =  loads(ws.recv()) # Waits for json payload from server
     print("Recieved Payload")
