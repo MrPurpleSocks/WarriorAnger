@@ -1,0 +1,24 @@
+{"nexus": {
+    "url": "",
+    "api_key": ""
+}, "obs": {
+    "password": "",
+    "host": "",
+    "port": ""
+}, "tba": {
+    "token": "",
+    "url": ""
+}, "discord": {
+    "webhook": ""
+}, "zipline": {
+    "url": "",
+    "token": "",
+    "folder": ""
+}, "general": {
+    "team": "",
+    "root": "",
+    "icon": "",
+    "event_key": "",
+    "next_match": "",
+    "matches_ran": []
+}, "NOTE": "dont edit this file, all needed edits are made by program"}
